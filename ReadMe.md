@@ -10,8 +10,8 @@ Please install python3 using the latest Anaconda3 distribution. [Anaconda3](http
 Now, we recommend to create a new environment in Anaconda and install the `requirements.txt`:
 
 ```bash
-conda create -n test_prism python=3.8
-conda activate test_prism
+conda create -n test_wrfextractor python=3.8
+conda activate test_wrfextractor
 pip install -r requirements.txt
 ```
 
@@ -23,10 +23,10 @@ Setup necessary parameters in `./conf/config.ini`, and run the slicing pipeline 
 python3 run_slicer.py
 ```
 
-If things go smothly, you would expect to see subset files as you configured in `[OUTPUT][slicer_output_root]`.
+If everything goes smoothly, you would expect to see subset files in the folder as you configured in `[OUTPUT][slicer_output_root]`.
 
-And then run extractor pipeline to get the variables at a specific location.
-
+Next, just configure the location and execute ` python3 run_extractor.py` pipeline to archive the variables at a specific site. 
+You would expect to see csv files in your specified output folder named like `var2d_S2040060100E2040060102_lat22.5_lon113.95.csv` and `var2d_S2040060100E2040060102_lat22.5_lon113.95.csv`, which stores 2d and 3d variables you prescried in `config.ini`, respectively.
 
 ### Input Files
 
