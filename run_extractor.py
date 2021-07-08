@@ -29,7 +29,7 @@ def main_run():
     utils.write_log('Read Config...')
     cfg_hdl=lib.cfgparser.read_cfg('./conf/config.ini')
    
-    wrf_extractor=lib.wrf_extractor.wrf_mesh(cfg_hdl)
+    wrf_extractor=lib.wrf_extractor.WRFMesh(cfg_hdl)
     wrf_extractor.extract()
 
     print('*********************WRFOUT EXTRACTOR ACCOMPLISHED*********************')

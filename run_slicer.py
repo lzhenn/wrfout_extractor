@@ -29,7 +29,7 @@ def main_run():
     utils.write_log('Read Config...')
     cfg_hdl=lib.cfgparser.read_cfg('./conf/config.ini')
    
-    wrf_slicer=lib.wrf_slicer.wrf_mesh(cfg_hdl)
+    wrf_slicer=lib.wrf_slicer.WRFMesh(cfg_hdl)
     wrf_slicer.pare()
 
     print('*********************WRFOUT SLICER ACCOMPLISHED*********************')

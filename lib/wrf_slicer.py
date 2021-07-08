@@ -11,7 +11,7 @@ import sys, os, subprocess
 import lib.utils as utils
 print_prefix='lib.wrf_slicer>>'
 
-class wrf_mesh:
+class WRFMesh:
 
     '''
     Construct grid info and UVW mesh template

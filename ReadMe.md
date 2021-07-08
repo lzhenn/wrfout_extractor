@@ -27,6 +27,7 @@ If everything goes smoothly, you would expect to see subset files in the folder 
 
 Next, just configure the location and execute ` python3 run_extractor.py` pipeline to archive the variables at a specific site. 
 You would expect to see csv files in your specified output folder named like `var2d_S2040060100E2040060102_lat22.5_lon113.95.csv` and `var2d_S2040060100E2040060102_lat22.5_lon113.95.csv`, which stores 2d and 3d variables you prescried in `config.ini`, respectively.
+Also, a file named as `ReadMe_S2040060100E2040060223_lat22.5_lon113.95.csv` will give a description of extracted grid position info.
 
 ### Input Files
 
@@ -52,5 +53,12 @@ You would expect to see csv files in your specified output folder named like `va
 * `./lib/time_manager.py`: Class template to construct time manager obj
 
 * `./lib/utils.py`: Commonly used utilities.
+
+### History
+June 14, 2021 
+* MVP
+July  8, 2021 
+* Updated with area mean option
+* Add readme file for single point extraction
 
 **Any question, please contact Zhenning LI (zhenningli91@gmail.com)**
