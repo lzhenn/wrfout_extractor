@@ -69,7 +69,8 @@ class WRFMesh:
         self.nc_fnlist=[]
         
         for idx, datestamp in enumerate(self.dateseries):
-            self.nc_fnlist.append(input_dir+'wrfout_d04_'+datestamp.strftime('%Y-%m-%d_%H:%M:%S')+'_sub')
+            self.nc_fnlist.append(input_dir+'wrfout_d04_'+datestamp.strftime('%Y-%m-%d_%H:%M:%S'))
+            #self.nc_fnlist.append(input_dir+'wrfout_d04_'+datestamp.strftime('%Y-%m-%d_%H:%M:%S')+'_sub')
 
         if (self.mean_flag):
             self.get_vertex()
@@ -87,6 +88,15 @@ class WRFMesh:
         for varname in self.var3d_list:
             var3d_vdic[varname]=[]
 
+        # read meta data
+        if not(self.mean_flag):
+            ncfile=nc4.Dataset(self.nc_fnlist[0])
+            lsmask=wrf.getvar(ncfile, 'LANDMASK')
+            self.lsmask=lsmask.sel(south_north=self.isn, west_east=self.iwe).values
+            luid=wrf.getvar(ncfile, 'LU_INDEX')
+            self.luid=luid.sel(south_north=self.isn, west_east=self.iwe).values
+            ncfile.close()
+            
         for idx, nc_fn in enumerate(self.nc_fnlist):
             utils.write_log(print_prefix+'Read '+nc_fn)
             
@@ -143,6 +153,7 @@ class WRFMesh:
             with open(self.outpath+'/ReadMe_S'+self.strt_timestr+'E'+self.end_timestr+'_lat'+self.latstr+'_lon'+self.lonstr+'.csv', 'w') as f:
                 f.write('Extractor for lat: '+self.latstr+', lon: '+self.lonstr+',\n')
                 f.write('found nearest grid lat:'+str(self.ilat.values)+', lon: '+str(self.ilon.values)+',\n')
+                f.write('grid landsea mask (1-land 0 water):'+str(self.lsmask)+', and land use code: '+str(self.luid)+',\n')
                 f.write('with grid irow:'+str(self.isn.values)+', icol: '+str(self.iwe.values)+' in WRF mesh.\n')
 
 
